@@ -2,6 +2,7 @@ import Head from "next/head"
 import styles from "../../styles/TenantIndex.module.css"
 import SearchInput from "../../components/SearchInput"
 import { Banner } from "../../components/Banner"
+import { ProductItem } from "../../components/ProductItem"
 
 const Home = () => {
 
@@ -15,6 +16,7 @@ const Home = () => {
                 <title>Tenant</title>
             </Head>
             <div className={styles.container}>
+
                 <header className={styles.header}>
                     <div className={styles.headerTop}>
                         <div className={styles.headerTopLeft}>
@@ -38,7 +40,32 @@ const Home = () => {
                         />
                     </div>
                 </header>
+
                 <Banner />
+
+                <div className={styles.grid}>
+                    {
+                        function () {
+                            let products = []
+                            for (let i = 1; i < 16; i++) {
+                                products.push(
+                                    <ProductItem
+                                        data={{
+                                            id: i,
+                                            image: '/temp/hamb.png',
+                                            category: 'Tradicional',
+                                            name: 'Texas Burguer',
+                                            price: 'R$ 25,00'
+                                        }}
+                                        mainColor="#fb9400"
+                                        secondColor="bisque"
+                                    />
+                                )
+                            }
+                            return products
+                        }()
+                    }
+                </div>
             </div>
         </div>
     )
