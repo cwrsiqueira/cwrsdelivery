@@ -11,7 +11,7 @@ type Props = {
 
 export const ProductItem = ({ data, mainColor, secondColor }: Props) => {
     return (
-        <Link href={`/products/${data.id}`}>
+        <Link href={`/teste/products/${data.id}`}>
             <a className={styles.container}>
                 <div className={styles.top} style={{ backgroundColor: secondColor }}></div>
                 <div className={styles.info}>
