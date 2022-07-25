@@ -3,8 +3,10 @@ import styles from "../../styles/TenantIndex.module.css"
 import SearchInput from "../../components/SearchInput"
 import { Banner } from "../../components/Banner"
 import { ProductItem } from "../../components/ProductItem"
+import { GetServerSideProps } from "next"
+import { getTenantResponse, useApi } from "../../libs/useApi"
 
-const Home = () => {
+const Home = ({ tenant }: Props) => {
 
     const handleSearch = (search: string) => {
         console.log(search)
@@ -24,9 +26,9 @@ const Home = () => {
                         </div>
                         <div className={styles.headerTopRight}>
                             <div className={styles.menuButton}>
-                                <div className={styles.menuButtonLine}></div>
-                                <div className={styles.menuButtonLine}></div>
-                                <div className={styles.menuButtonLine}></div>
+                                <div className={styles.menuButtonLine} style={{ backgroundColor: tenant.mainColor }}></div>
+                                <div className={styles.menuButtonLine} style={{ backgroundColor: tenant.mainColor }}></div>
+                                <div className={styles.menuButtonLine} style={{ backgroundColor: tenant.mainColor }}></div>
                             </div>
                         </div>
                     </div>
@@ -35,7 +37,7 @@ const Home = () => {
                     </div>
                     <div className={styles.headerBottom}>
                         <SearchInput
-                            mainColor="#fb9400"
+                            mainColor={tenant.mainColor}
                             onSearch={handleSearch}
                         />
                     </div>
@@ -57,8 +59,8 @@ const Home = () => {
                                             name: 'Texas Burguer',
                                             price: 'R$ 25,00'
                                         }}
-                                        mainColor="#fb9400"
-                                        secondColor="bisque"
+                                        mainColor={tenant.mainColor}
+                                        secondColor={tenant.secondColor}
                                     />
                                 )
                             }
@@ -66,8 +68,35 @@ const Home = () => {
                         }()
                     }
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 export default Home;
+
+type Props = {
+    tenant: getTenantResponse
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { tenant: tenantSlug } = context.query
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const api = useApi()
+
+    const tenant = api.getTenant(tenantSlug as string)
+
+    if (!tenant) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: {
+            tenant
+        }
+    }
+}
