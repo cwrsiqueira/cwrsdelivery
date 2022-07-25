@@ -7,13 +7,13 @@ export type getTenantResponse = {
 export const useApi = () => ({
     getTenant: (tenantSlug: string): boolean | getTenantResponse => {
         switch (tenantSlug) {
-            case 'CWRSBurger':
+            case 'cwrsburger':
                 return {
                     name: 'CWRSBurger',
                     mainColor: '#DF013A',
                     secondColor: '#F8E0E6'
                 }
-            case 'CWRSPizza':
+            case 'cwrspizza':
                 return {
                     name: 'CWRSPizza',
                     mainColor: '#0101DF',
