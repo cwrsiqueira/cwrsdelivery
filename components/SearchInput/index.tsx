@@ -1,15 +1,16 @@
 import React, { useState } from "react"
 import styles from "./styles.module.css"
 import SearchIcon from "./searchIcon.svg";
+import { useAppContext } from "../../contexts/AppContext";
 
 type Props = {
-    mainColor: string;
     onSearch: (search: string) => void;
 }
 
-const SearchInput = ({ mainColor, onSearch }: Props) => {
+const SearchInput = ({ onSearch }: Props) => {
     const [focused, setFocused] = useState(false)
     const [search, setSearch] = useState('')
+    const { tenant } = useAppContext()
 
     const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.code === 'Enter') {
@@ -18,12 +19,12 @@ const SearchInput = ({ mainColor, onSearch }: Props) => {
     }
 
     return (
-        <div className={styles.container} style={{ borderColor: focused ? mainColor : '#ffffff' }}>
+        <div className={styles.container} style={{ borderColor: focused ? tenant?.mainColor : '#ffffff' }}>
             <div
                 className={styles.button}
                 onClick={() => onSearch(search)}
             >
-                <SearchIcon color={mainColor} />
+                <SearchIcon color={tenant?.mainColor} />
             </div>
             <input
                 type="search"
