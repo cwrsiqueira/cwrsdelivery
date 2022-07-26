@@ -11,7 +11,7 @@ const TEMP_PRODUCT: Product = {
 }
 
 export const useApi = (tenantSlug: string) => ({
-    getTenant: async (): Promise<boolean | Tenant> => {
+    getTenant: () => {
         switch (tenantSlug) {
             case 'cwrsburger':
                 return {
