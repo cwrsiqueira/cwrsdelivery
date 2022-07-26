@@ -11,6 +11,10 @@
     align-items: center;
 }
 
+.left {
+    cursor: pointer;
+}
+
 .center {
     flex: 1;
     display: flex;
