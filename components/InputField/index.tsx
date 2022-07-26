@@ -8,21 +8,39 @@ type Props = {
     placeholder: string;
     value: string;
     onChange: (newValue: string) => void;
-    password: boolean
+    password?: boolean
 }
 
 export const InputField = ({ color, placeholder, value, onChange, password }: Props) => {
-    const [input, setInput] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
+    const [focused, setFocused] = useState(false)
+
     return (
-        <div className={styles.container}>
+        <div
+            className={styles.container}
+            style={{
+                borderColor: focused ? color : '#f9f9fb',
+                backgroundColor: focused ? "#fff" : '#f9f9fb'
+            }}
+        >
             <input
-                type={password ? 'password' : 'text'}
+                type={password ? (showPassword ? 'text' : 'password') : 'text'}
                 className={styles.input}
                 placeholder={placeholder}
                 value={value}
                 onChange={e => onChange(e.target.value)}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
             />
-
+            {password &&
+                <div
+                    className={styles.showPassword}
+                    onClick={() => setShowPassword(!showPassword)}
+                >
+                    {showPassword && <CloseEye />}
+                    {!showPassword && <OpenEye />}
+                </div>
+            }
         </div>
     )
 }

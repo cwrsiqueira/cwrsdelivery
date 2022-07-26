@@ -1,0 +1,28 @@
+.container {
+    background-color: #fff;
+    padding: 50px 24px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    margin: 100px auto 53px auto;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 29px;
+    color: #1b1b1b;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: center;
+    color: rgba(27, 27, 27, 0.8);
+    width: 80%;
+    padding-bottom: 40px;
+}

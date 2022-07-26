@@ -1,5 +1,5 @@
 import Head from "next/head"
-import styles from "../../styles/Login.module.css"
+import styles from "../../styles/SignUp.module.css"
 import { GetServerSideProps } from "next"
 import { Tenant } from "../../types/Tenant"
 import { useApi } from "../../libs/useApi"
@@ -11,7 +11,7 @@ import Button from "../../components/Button"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
-const Login = (data: Props) => {
+const SignUp = (data: Props) => {
     const { tenant, setTenant } = useAppContext()
     useEffect(() => {
         setTenant(data.tenant)
@@ -19,6 +19,7 @@ const Login = (data: Props) => {
 
     const router = useRouter()
 
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -26,33 +27,41 @@ const Login = (data: Props) => {
 
     }
 
-    const handleSignUp = () => {
-        router.push(`/${data.tenant.slug}/signup`)
-    }
-
     return (
         <div>
             <Head>
-                <title>Login | {data.tenant.name}</title>
+                <title>Cadastro | {data.tenant.name}</title>
             </Head>
             <div className={styles.container}>
                 <Header
                     color={data.tenant.mainColor}
-                    hrefBack={`/${data.tenant.slug}`}
+                    hrefBack={`/${data.tenant.slug}/login`}
                 />
 
                 <div className={styles.header}>{data.tenant.name}</div>
 
-                <div className={styles.subtitle} style={{ borderBottomColor: data.tenant.mainColor }}>Use suas credenciais para realizar o login.</div>
+                <div
+                    className={styles.subtitle}
+                    style={{ borderBottomColor: data.tenant.mainColor }}
+                >
+                    Preencha os campos para criar o seu cadastro.
+                </div>
                 <div className={styles.line}></div>
 
+                <div className={styles.inputArea}>
+                    <InputField
+                        color={data.tenant.mainColor}
+                        placeholder="Digite seu nome"
+                        value={name}
+                        onChange={setName}
+                    />
+                </div>
                 <div className={styles.inputArea}>
                     <InputField
                         color={data.tenant.mainColor}
                         placeholder="Digite seu email"
                         value={email}
                         onChange={setEmail}
-                        password={false}
                     />
                 </div>
                 <div className={styles.inputArea}>
@@ -67,7 +76,7 @@ const Login = (data: Props) => {
                 <div className={styles.inputArea}>
                     <Button
                         color={data.tenant.mainColor}
-                        label={'Entrar'}
+                        label={'Cadastrar'}
                         onClick={handleSubmit}
                         fill
                     />
@@ -77,28 +86,19 @@ const Login = (data: Props) => {
                     className={styles.forgetArea}
                     style={{ borderBottomColor: data.tenant.mainColor }}
                 >
-                    Esqueceu sua senha?
+                    Já tem cadastro?
                     <Link
-                        href={`/${data.tenant.slug}/forget-password`}
+                        href={`/${data.tenant.slug}/login`}
                     >
-                        <a style={{ color: data.tenant.mainColor }}> Clique Aqui</a>
+                        <a style={{ color: data.tenant.mainColor }}> Fazer Login</a>
                     </Link>
-                </div>
-                <div className={styles.line}></div>
-
-                <div className={styles.signUpArea}>
-                    <Button
-                        color={data.tenant.mainColor}
-                        label={'Quero me cadastrar'}
-                        onClick={handleSignUp}
-                    />
                 </div>
 
             </div >
         </div >
     )
 }
-export default Login;
+export default SignUp;
 
 type Props = {
     tenant: Tenant

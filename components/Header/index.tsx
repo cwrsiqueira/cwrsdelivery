@@ -13,11 +13,11 @@ type Props = {
 export const Header = ({ hrefBack, color, title, subtitle }: Props) => {
     return (
         <div className={styles.container}>
-            <div className={styles.left}>
-                <Link href={hrefBack}>
+            <Link href={hrefBack}>
+                <div className={styles.left}>
                     <ArrowBack color={color} />
-                </Link>
-            </div>
+                </div>
+            </Link>
             <div className={styles.center}>
                 {title && <div className={styles.title}>{title}</div>}
                 {subtitle && <div className={styles.subtitle}>{subtitle}</div>}

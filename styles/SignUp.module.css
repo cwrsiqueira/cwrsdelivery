@@ -17,7 +17,7 @@
     letter-spacing: 0em;
     text-align: center;
     color: rgba(27, 27, 27, 0.8);
-    width: 223px;
+    width: 220px;
     padding-bottom: 40px;
     border-bottom: 1.5px solid #000;
     position: relative;
@@ -39,17 +39,9 @@
     font-weight: 600;
     font-size: 16px;
     color: #1B1B1B;
-    padding-bottom: 62px;
-    border-bottom: 1.5px solid #000;
-    width: fit-content;
-    position: relative;
 }
 
 .forgetArea a {
     font-weight: 400;
     text-decoration: none;
-}
-
-.signUpArea {
-    margin-top: 62px;
 }
