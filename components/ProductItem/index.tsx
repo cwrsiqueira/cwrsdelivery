@@ -10,7 +10,6 @@ type Props = {
 
 export const ProductItem = ({ data }: Props) => {
     const { tenant } = useAppContext()
-    console.log(tenant)
     return (
         <Link href={`/${tenant?.slug}/products/${data.id}`}>
             <a className={styles.container}>
@@ -21,7 +20,7 @@ export const ProductItem = ({ data }: Props) => {
                     </div>
                     <div className={styles.category}>{data.category}</div>
                     <div className={styles.name}>{data.name}</div>
-                    <div className={styles.price} style={{ color: tenant?.mainColor }}>{data.price}</div>
+                    <div className={styles.price} style={{ color: tenant?.mainColor }}>{data.price.toLocaleString('pt-br', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })}</div>
                 </div>
             </a >
         </Link>

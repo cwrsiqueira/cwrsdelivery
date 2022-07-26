@@ -7,10 +7,12 @@ import { GetServerSideProps } from "next"
 import { Tenant } from "../../types/Tenant"
 import { useApi } from "../../libs/useApi"
 import { useAppContext } from "../../contexts/AppContext"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { Product } from "../../types/Product"
 
 const Home = (data: Props) => {
     const { tenant, setTenant } = useAppContext()
+    const [prod, setProd] = useState(data.products)
 
     useEffect(() => {
         setTenant(data.tenant)
@@ -52,24 +54,12 @@ const Home = (data: Props) => {
                 <Banner />
 
                 <div className={styles.grid}>
-                    {
-                        function () {
-                            let products = []
-                            for (let i = 1; i < 16; i++) {
-                                products.push(
-                                    <ProductItem
-                                        data={{
-                                            id: i,
-                                            image: '/temp/hamb.png',
-                                            category: 'Tradicional',
-                                            name: 'Texas Burguer',
-                                            price: 'R$ 25,00'
-                                        }}
-                                    />
-                                )
-                            }
-                            return products
-                        }()
+                    {data.products &&
+                        prod.map((item, index) => (
+                            <ProductItem key={index}
+                                data={item}
+                            />
+                        ))
                     }
                 </div>
             </div >
@@ -79,15 +69,16 @@ const Home = (data: Props) => {
 export default Home;
 
 type Props = {
-    tenant: Tenant
+    tenant: Tenant,
+    products: Product[]
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { tenant: tenantSlug } = context.query
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const api = useApi()
+    const api = useApi(tenantSlug as string)
 
-    const tenant = api.getTenant(tenantSlug as string)
+    const tenant = await api.getTenant()
 
     if (!tenant) {
         return {
@@ -98,9 +89,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
     }
 
+    const products = await api.getProducts()
+
     return {
         props: {
-            tenant
+            tenant,
+            products
         }
     }
 }
