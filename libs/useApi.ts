@@ -3,7 +3,7 @@ import { Tenant } from "../types/Tenant";
 
 const TEMP_PRODUCT: Product = {
     id: 1,
-    image: '/temp/hamb.png',
+    image: '/temp/golden_burger.png',
     category: 'Tradicional',
     name: 'Texas Burguer',
     price: 25.50,

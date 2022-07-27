@@ -9,10 +9,13 @@ import { useApi } from "../../libs/useApi"
 import { useAppContext } from "../../contexts/AppContext"
 import { useEffect, useState } from "react"
 import { Product } from "../../types/Product"
+import { useRouter } from "next/router"
 
 const Home = (data: Props) => {
     const { tenant, setTenant } = useAppContext()
     const [prod, setProd] = useState(data.products)
+
+    const router = useRouter()
 
     useEffect(() => {
         setTenant(data.tenant)
@@ -20,6 +23,10 @@ const Home = (data: Props) => {
 
     const handleSearch = (search: string) => {
         console.log(search)
+    }
+
+    const handleMenu = () => {
+        router.push(`/${data.tenant.slug}/login`)
     }
 
     return (
@@ -34,11 +41,11 @@ const Home = (data: Props) => {
                             <div className={styles.headerTitle}>Seja Bem-Vindo 👋</div>
                         </div>
                         <div className={styles.headerTopRight}>
-                            <div className={styles.menuButton}>
+                            <button className={styles.menuButton} onClick={handleMenu}>
                                 <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
                                 <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
                                 <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                     <div className={styles.headerMiddle}>

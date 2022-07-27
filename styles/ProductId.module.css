@@ -1,0 +1,24 @@
+.container {
+    background-color: #fff;
+}
+
+.header {
+    padding: 0 24px;
+    position: absolute;
+    top: 64px;
+    left: 24px;
+    right: 24px;
+}
+
+.headerBg {
+    height: 383px;
+    background-color: #999;
+    background-image: url('/assets/images/bgElipse.png');
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.image {
+    text-align: center;
+    margin-top: -220px;
+}
