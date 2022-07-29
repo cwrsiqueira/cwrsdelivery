@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useAppContext } from "../../contexts/AppContext"
-import { userFormatter } from "../../libs/useFormatter"
+import { useFormatter } from "../../libs/useFormatter"
 import { Product } from "../../types/Product"
 import styles from "./styles.module.css"
 
@@ -11,7 +11,7 @@ type Props = {
 
 export const ProductItem = ({ data }: Props) => {
     const { tenant } = useAppContext()
-    const formatter = userFormatter()
+    const formatter = useFormatter()
     return (
         <Link href={`/${tenant?.slug}/product/${data.id}`}>
             <a className={styles.container}>

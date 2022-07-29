@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -22,15 +23,19 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://cwrsdelivery.vercel.app/cwrsburger" className={styles.card}>
-            <h2>CWRSBurger &rarr;</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </a>
+          <Link href={'/cwrsburger'}>
+            <a className={styles.card}>
+              <h2>CWRSBurger &rarr;</h2>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </a>
+          </Link>
 
-          <a href="https://cwrsdelivery.vercel.app/cwrspizza" className={styles.card}>
-            <h2>CWRSPizza &rarr;</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate?</p>
-          </a>
+          <Link href={'/cwrspizza'}>
+            <a className={styles.card}>
+              <h2>CWRSPizza &rarr;</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate?</p>
+            </a>
+          </Link>
         </div>
       </main>
 

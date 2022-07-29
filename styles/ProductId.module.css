@@ -18,7 +18,66 @@
     background-repeat: no-repeat;
 }
 
+.headerBg:hover {
+    background-color: #1b1b1b;
+}
+
 .image {
     text-align: center;
     margin-top: -220px;
+}
+
+.category {
+    font-weight: 400;
+    font-size: 16px;
+    color: #1b1b1b;
+    margin: 0 24px;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    color: #1b1b1b;
+    margin: 0 24px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid #000;
+    width: fit-content;
+    position: relative;
+}
+
+.line {
+    border-top: 1.5px solid #E2E2E2;
+    margin: -0.75px 24px 0 24px;
+}
+
+.description {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(27, 27, 27, 0.5);
+    line-height: 24px;
+    margin: 24px 0 0 24px;
+}
+
+.qtText {
+    margin: 32px 0 16px 24px;
+}
+
+.qtArea {
+    display: flex;
+    margin: 16px 24px 0 24px;
+}
+
+.qtAreaLeft {}
+
+.qtAreaRight {
+    flex: 1;
+    text-align: right;
+    font-weight: 600;
+    font-size: 40px;
+    color: #000;
+}
+
+.button {
+    margin: 50px 24px 24px 24px;
 }

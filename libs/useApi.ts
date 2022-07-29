@@ -6,7 +6,7 @@ const TEMP_PRODUCT: Product = {
     image: '/temp/golden_burger.png',
     category: 'Tradicional',
     name: 'Texas Burguer',
-    price: 25.50,
+    price: 26.50,
     description: '2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa, Pão brioche artesanal'
 }
 
