@@ -46,7 +46,7 @@ const Home = (data: Props) => {
             <div className={styles.headerBg} style={{ backgroundColor: data.tenant.mainColor }}></div>
 
             <div className={styles.image}>
-                <Image src={data.product.image} alt="Produto" width={319} height={282} />
+                <Image src={data.product.image} alt="Produto" width={300} height={265} />
             </div>
 
             <div className={styles.category}>{data.product.category}</div>
