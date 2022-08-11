@@ -10,23 +10,25 @@ import { useAppContext } from "../../contexts/AppContext"
 import { useEffect, useState } from "react"
 import { Product } from "../../types/Product"
 import { useRouter } from "next/router"
+import Menu from "../../components/Menu"
 
 const Home = (data: Props) => {
     const { tenant, setTenant } = useAppContext()
     const [prod, setProd] = useState(data.products)
+    const [openMenu, setOpenMenu] = useState(false)
 
     const router = useRouter()
 
     useEffect(() => {
         setTenant(data.tenant)
-    }, [data.tenant, setTenant])
+    })
 
     const handleSearch = (search: string) => {
         console.log(search)
     }
 
     const handleMenu = () => {
-        router.push(`/${data.tenant.slug}/login`)
+        setOpenMenu(!openMenu)
     }
 
     return (
@@ -70,6 +72,7 @@ const Home = (data: Props) => {
                     }
                 </div>
             </div >
+            <Menu openMenu={openMenu} handleCloseMenu={handleMenu} />
         </div >
     )
 }

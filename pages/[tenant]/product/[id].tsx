@@ -19,10 +19,14 @@ const Home = (data: Props) => {
 
     useEffect(() => {
         setTenant(data.tenant)
-    }, [data.tenant, setTenant])
+    })
 
     const formatter = useFormatter()
-    const handleAddBag = () => { }
+
+    const handleAddBag = () => {
+
+    }
+
     const handleChangeCount = (newCount: number) => {
         setQtCount(newCount)
     }
