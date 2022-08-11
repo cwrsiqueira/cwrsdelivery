@@ -15,6 +15,7 @@
     width: 100%;
     opacity: 1;
     transform: translateX(0px);
+    pointer-events: auto;
 }
 
 .header {
@@ -64,7 +65,7 @@
     display: flex;
     text-decoration: none;
     color: rgba(106, 125, 139, 1);
-    margin-bottom: 52px;
+    margin-bottom: 47px;
 }
 
 .icon {
@@ -81,8 +82,7 @@
     font-weight: 400;
     font-size: 16px;
     color: rgba(106, 125, 139, 1);
-    position: fixed;
-    left: 67px;
-    bottom: 60px;
     display: flex;
+    padding-left: 68px;
+    margin-top: 280px;
 }
