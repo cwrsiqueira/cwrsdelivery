@@ -18,11 +18,9 @@ const Model = (data: Props) => {
     return (
         <div>
             <Head>
-                {/* Alterar título da página */}
                 <title>Model | {data.tenant.name}</title>
             </Head>
             <div className={styles.container}>
-                {/* Conteúdo da Página */}
                 <h1>Model</h1>
             </div >
         </div >

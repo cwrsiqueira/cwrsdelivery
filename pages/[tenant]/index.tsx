@@ -34,7 +34,7 @@ const Home = (data: Props) => {
     return (
         <div>
             <Head>
-                <title>Tenant</title>
+                <title>{tenant?.name}</title>
             </Head>
             <div className={styles.container}>
                 <header className={styles.header}>

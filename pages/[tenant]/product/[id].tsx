@@ -34,7 +34,7 @@ const Home = (data: Props) => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>{data.product.name} | {data.tenant.name}</title>
+                <title>{`${data.product.name} | ${data.tenant.name}`}</title>
             </Head>
 
             <div className={styles.header}>
