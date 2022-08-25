@@ -1,7 +1,7 @@
-import { Tenant } from '../../types/Tenant';
 import { useContext } from 'react';
+import { AppContext } from '.';
+import { Tenant } from '../../types/Tenant';
 import { Actions } from './types';
-import { AppContext } from './index'
 
 export const useAppContext = () => {
     const { state, dispatch } = useContext(AppContext)
