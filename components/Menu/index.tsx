@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useAppContext } from '../../contexts/AppContext';
+import { useAppContext } from '../../contexts/app';
 import styles from './Menu.module.css'
 import CloseIcon from './CloseIcon.svg'
 import Button from '../Button'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Image from 'next/image';
 import Cardapio from './cardapio.svg'
 import Config from './config.svg'
 import Favoritos from './favoritos.svg'

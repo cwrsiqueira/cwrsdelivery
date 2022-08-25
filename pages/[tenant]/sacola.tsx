@@ -1,4 +1,4 @@
-import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/app";
 
 const Sacola = () => {
     const { tenant } = useAppContext()

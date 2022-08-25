@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useAppContext } from "../../contexts/AppContext"
+import { useAppContext } from "../../contexts/app"
 import { useFormatter } from "../../libs/useFormatter"
 import { Product } from "../../types/Product"
 import styles from "./styles.module.css"

@@ -2,7 +2,7 @@ import Head from "next/head"
 import { GetServerSideProps } from "next"
 import { Tenant } from "../../../types/Tenant"
 import { useApi } from "../../../libs/useApi"
-import { useAppContext } from "../../../contexts/AppContext"
+import { useAppContext } from "../../../contexts/app"
 import { useEffect, useState } from "react"
 import { Product } from "../../../types/Product"
 import styles from '../../../styles/ProductId.module.css'
