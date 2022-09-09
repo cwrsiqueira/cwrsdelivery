@@ -1,14 +1,15 @@
 .container {
     position: fixed;
     top: 0;
-    left: 0;
+    bottom: 0;
+    right: 0;
     height: 100vh;
     width: 0;
     background-color: white;
     z-index: 9;
     opacity: 0;
-    transform: translateX(-100px);
-    transition: width 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    transition: all ease-in-out .2s;
+    overflow-x: hidden;
 }
 
 .container.active {
@@ -41,6 +42,10 @@
 
 .header_left {
     margin-top: 0;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
 }
 
 .inputArea {
@@ -79,6 +84,8 @@
 }
 
 .footer {
+    position: fixed;
+    bottom: 50px;
     font-weight: 400;
     font-size: 16px;
     color: rgba(106, 125, 139, 1);

@@ -1,5 +1,6 @@
 import { Product } from "../types/Product";
 import { Tenant } from "../types/Tenant";
+import { User } from "../types/User";
 
 const TEMP_PRODUCT: Product = {
     id: 1,
@@ -36,12 +37,23 @@ export const useApi = (tenantSlug: string) => ({
         let products = []
 
         for (let index = 0; index < 5; index++) {
-            products.push(TEMP_PRODUCT)
+            products.push({
+                ...TEMP_PRODUCT,
+                id: index + 1
+            })
         }
 
         return products
     },
-    getProduct: async (id: string) => {
-        return TEMP_PRODUCT
+    getProduct: async (id: number) => {
+        return { ...TEMP_PRODUCT, id }
+    },
+    authorizeToken: async (token: string): Promise<User | false> => {
+        if (!token) return false;
+
+        return {
+            name: 'Carlos Wagner',
+            email: 'cwrsiqueira@msn.com'
+        }
     }
 })

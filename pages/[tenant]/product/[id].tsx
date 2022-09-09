@@ -11,6 +11,9 @@ import Image from "next/image"
 import Button from "../../../components/Button"
 import { useFormatter } from "../../../libs/useFormatter"
 import QtControl from "../../../components/QtControl"
+import { CartCookie } from "../../../types/CartCookie"
+import { getCookie, hasCookie, setCookie } from "cookies-next"
+import { useRouter } from "next/router"
 
 const Home = (data: Props) => {
     const { tenant, setTenant } = useAppContext()
@@ -19,12 +22,38 @@ const Home = (data: Props) => {
 
     useEffect(() => {
         setTenant(data.tenant)
-    })
+    }, [])
 
     const formatter = useFormatter()
+    const router = useRouter()
 
     const handleAddBag = () => {
+        let cart: CartCookie[] = []
 
+        // create or get existing cart
+        if (hasCookie('cart')) {
+            const cartCookie = getCookie('cart')
+            const cartJson: CartCookie[] = JSON.parse(cartCookie as string)
+            for (let i in cartJson) {
+                if (cartJson[i].qt && cartJson[i].id) {
+                    cart.push(cartJson[i])
+                }
+            }
+        }
+
+        // Search product in cart
+        const cartIndex = cart.findIndex(item => item.id === data.product.id)
+        if (cartIndex > -1) {
+            cart[cartIndex].qt += qtCount
+        } else {
+            cart.push({ id: data.product.id, qt: qtCount })
+        }
+
+        // setting cookie
+        setCookie('cart', JSON.stringify(cart))
+
+        //going to cart
+        router.push(`/${data.tenant.slug}/sacola`)
     }
 
     const handleChangeCount = (newCount: number) => {
@@ -113,7 +142,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
     }
 
-    const product = await api.getProduct(id as string)
+    const product = await api.getProduct(parseInt(id as string))
 
     return {
         props: {

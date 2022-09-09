@@ -13,9 +13,10 @@ const SearchInput = ({ onSearch }: Props) => {
     const { tenant } = useAppContext()
 
     const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.code === 'Enter') {
-            onSearch(search)
-        }
+        // if (event.code === 'Enter') {
+
+        // }
+        onSearch(search)
     }
 
     return (
@@ -27,7 +28,7 @@ const SearchInput = ({ onSearch }: Props) => {
                 <SearchIcon color={tenant?.mainColor} />
             </div>
             <input
-                type="search"
+                type="text"
                 className={styles.input}
                 placeholder="Digite aqui"
                 onFocus={() => setFocused(true)}

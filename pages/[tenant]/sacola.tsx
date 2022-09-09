@@ -1,13 +1,12 @@
-import { useAppContext } from "../../contexts/app";
+import { getCookie } from "cookies-next";
 
-const Sacola = () => {
-    const { tenant } = useAppContext()
-
+const Cart = () => {
+    const cart = getCookie('cart')
     return (
         <div>
-            Sacola | {tenant?.name}
+            {cart}
         </div>
     );
 }
 
-export default Sacola;
+export default Cart;

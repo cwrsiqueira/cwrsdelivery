@@ -11,21 +11,39 @@ import { useEffect, useState } from "react"
 import { Product } from "../../types/Product"
 import { useRouter } from "next/router"
 import Menu from "../../components/Menu"
+import { getCookie } from "cookies-next"
+import { User } from "../../types/User"
+import { useAuthContext } from "../../contexts/auth"
+import NoItems from '../../public/assets/images/noitems.svg'
 
 const Home = (data: Props) => {
+    const { setToken, setUser } = useAuthContext()
     const { tenant, setTenant } = useAppContext()
-    const [prod, setProd] = useState(data.products)
+    const [prod, setProd] = useState<Product[]>(data.products)
     const [openMenu, setOpenMenu] = useState(false)
 
     const router = useRouter()
 
     useEffect(() => {
         setTenant(data.tenant)
-    })
+        setToken(data.token)
+        if (data.user) setUser(data.user)
+    }, [])
 
-    const handleSearch = (search: string) => {
-        console.log(search)
-    }
+    // Search
+    const [filteredList, setFilteredList] = useState<Product[]>([])
+    const [searchText, setSearchText] = useState('')
+    const handleSearch = (search: string) => setSearchText(search)
+    useEffect(() => {
+        let newFilteredList: Product[] = []
+        for (let product of prod) {
+            if (product.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1) {
+                newFilteredList.push(product)
+            }
+        }
+        setFilteredList(newFilteredList)
+    }, [searchText])
+
 
     const handleMenu = () => {
         setOpenMenu(!openMenu)
@@ -49,6 +67,7 @@ const Home = (data: Props) => {
                                 <div className={styles.menuButtonLine} style={{ backgroundColor: tenant?.mainColor }}></div>
                             </button>
                         </div>
+                        <Menu openMenu={openMenu} handleCloseMenu={handleMenu} />
                     </div>
                     <div className={styles.headerMiddle}>
                         <div className={styles.headerSubtitle}>O que deseja para hoje?</div>
@@ -60,27 +79,59 @@ const Home = (data: Props) => {
                     </div>
                 </header>
 
-                <Banner />
+                {searchText &&
+                    <>
+                        <div className={styles.searchText}>
+                            Procurando por: <strong>{searchText}</strong>
+                        </div>
 
-                <div className={styles.grid}>
-                    {data.products &&
-                        prod.map((item, index) => (
-                            <ProductItem key={index}
-                                data={item}
-                            />
-                        ))
-                    }
-                </div>
+                        {filteredList.length > 0 &&
+                            <div className={styles.grid}>
+                                {filteredList.map((item, index) => (
+                                    <ProductItem key={index}
+                                        data={item}
+                                    />
+                                ))}
+                            </div>
+                        }
+
+                        {filteredList.length <= 0 &&
+                            <div className={styles.noProducts}>
+                                <NoItems color={'#E0E0E0'} />
+                                <div className={styles.noProductsText}>
+                                    Ops! Não há itens com este nome
+                                </div>
+                            </div>
+                        }
+                    </>
+                }
+
+                {!searchText &&
+                    <>
+                        <Banner />
+
+                        <div className={styles.grid}>
+                            {data.products &&
+                                prod.map((item, index) => (
+                                    <ProductItem key={index}
+                                        data={item}
+                                    />
+                                ))
+                            }
+                        </div>
+                    </>
+                }
             </div >
-            <Menu openMenu={openMenu} handleCloseMenu={handleMenu} />
         </div >
     )
 }
 export default Home;
 
 type Props = {
-    tenant: Tenant,
-    products: Product[]
+    tenant: Tenant;
+    products: Product[];
+    token: string;
+    user: User | null;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -88,8 +139,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const api = useApi(tenantSlug as string)
 
+    // get tenant
     const tenant = await api.getTenant()
-
     if (!tenant) {
         return {
             redirect: {
@@ -99,12 +150,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
     }
 
+    // get cookie
+    // const token = context.req.cookies.token;
+    const token = getCookie('token', context)
+    const user = await api.authorizeToken(token as string)
+
+    // get products
     const products = await api.getProducts()
 
     return {
         props: {
             tenant,
-            products
+            products,
+            user,
+            token
         }
     }
 }

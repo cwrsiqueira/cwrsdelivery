@@ -1,8 +1,9 @@
 import { Dispatch, ReactNode } from 'react';
-import { Tenant } from '../../types/Tenant';
+import { User } from '../../types/User';
 
 export type DataType = {
-    tenant: Tenant | null;
+    token: string;
+    user: User | null;
 }
 
 export type ActionType = {
@@ -20,5 +21,6 @@ export type ProviderType = {
 }
 
 export enum Actions {
-    SET_TENANT
+    SET_TOKEN,
+    SET_USER
 }

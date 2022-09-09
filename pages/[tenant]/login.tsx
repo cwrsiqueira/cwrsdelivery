@@ -10,12 +10,14 @@ import { InputField } from "../../components/InputField"
 import Button from "../../components/Button"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { useAuthContext } from "../../contexts/auth"
 
 const Login = (data: Props) => {
+    const { setUser, setToken } = useAuthContext()
     const { tenant, setTenant } = useAppContext()
     useEffect(() => {
         setTenant(data.tenant)
-    }, [data.tenant, setTenant])
+    }, [])
 
     const router = useRouter()
 
@@ -23,7 +25,12 @@ const Login = (data: Props) => {
     const [password, setPassword] = useState('')
 
     const handleSubmit = () => {
-
+        setToken('123456')
+        setUser({
+            name: 'Carlos Wagner',
+            email: 'cwrsiqueira@msn.com'
+        })
+        router.push(`/${tenant?.slug}`)
     }
 
     const handleSignUp = () => {
@@ -98,7 +105,7 @@ const Login = (data: Props) => {
         </div >
     )
 }
-export default Login;
+export default Login
 
 type Props = {
     tenant: Tenant
