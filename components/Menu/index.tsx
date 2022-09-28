@@ -41,7 +41,7 @@ const Menu = ({ openMenu, handleCloseMenu }: Props) => {
 
                     {user &&
                         <>
-                            <div className={styles.title}>Carlos Wagner</div>
+                            <div className={styles.title}>{user.name}</div>
                             <div className={styles.subtitle}>Ultimo pedido há 2 semanas</div>
                         </>
                     }
@@ -59,7 +59,7 @@ const Menu = ({ openMenu, handleCloseMenu }: Props) => {
 
             <div className={styles.body}>
                 <Link href={`/${tenant?.slug}/`}>
-                    <a className={styles.area_menu_title}>
+                    <a className={styles.area_menu_title} onClick={handleCloseMenu}>
                         <div className={styles.icon}><Cardapio /></div>
                         <div className={styles.menu_title}>Cardápio</div>
                     </a>

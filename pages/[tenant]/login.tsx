@@ -17,6 +17,7 @@ const Login = (data: Props) => {
     const { tenant, setTenant } = useAppContext()
     useEffect(() => {
         setTenant(data.tenant)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const router = useRouter()

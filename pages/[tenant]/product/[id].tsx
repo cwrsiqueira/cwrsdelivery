@@ -22,6 +22,7 @@ const Home = (data: Props) => {
 
     useEffect(() => {
         setTenant(data.tenant)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const formatter = useFormatter()

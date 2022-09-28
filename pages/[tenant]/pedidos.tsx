@@ -9,7 +9,8 @@ const Pedidos = (data: Props) => {
     const { tenant, setTenant } = useAppContext()
     useEffect(() => {
         setTenant(data.tenant)
-    }, [data.tenant, setTenant])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div>

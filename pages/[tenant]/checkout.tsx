@@ -1,5 +1,5 @@
 import Head from "next/head"
-import styles from "../../styles/Favoritos.module.css"
+import styles from "../../styles/Checkout.module.css"
 import { GetServerSideProps } from "next"
 import { Tenant } from "../../types/Tenant"
 import { useApi } from "../../libs/useApi"
@@ -10,7 +10,7 @@ import { User } from "../../types/User"
 import { useAuthContext } from "../../contexts/auth"
 import { Header } from "../../components/Header"
 
-const Favoritos = (data: Props) => {
+const Checkout = (data: Props) => {
     const { setToken, setUser } = useAuthContext()
     const { tenant, setTenant } = useAppContext()
 
@@ -24,17 +24,17 @@ const Favoritos = (data: Props) => {
     return (
         <div>
             <Head>
-                <title>Favoritos | {tenant?.name}</title>
+                <title>Checkout | {tenant?.name}</title>
             </Head>
 
             <div className={styles.container}>
-                <Header hrefBack={`/${tenant?.slug}`} color={`${tenant?.mainColor}`} title="Favoritos" />
+                <Header hrefBack={`/${tenant?.slug}`} color={`${tenant?.mainColor}`} title="Checkout" />
 
             </div >
         </div >
     )
 }
-export default Favoritos;
+export default Checkout;
 
 type Props = {
     tenant: Tenant;

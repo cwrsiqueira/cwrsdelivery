@@ -26,8 +26,9 @@ const Home = (data: Props) => {
 
     useEffect(() => {
         setTenant(data.tenant)
-        setToken(data.token)
+        if (data.token) setToken(data.token)
         if (data.user) setUser(data.user)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // Search
@@ -42,6 +43,7 @@ const Home = (data: Props) => {
             }
         }
         setFilteredList(newFilteredList)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchText])
 
 
@@ -130,7 +132,7 @@ export default Home;
 type Props = {
     tenant: Tenant;
     products: Product[];
-    token: string;
+    token: string | null;
     user: User | null;
 }
 
@@ -152,7 +154,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     // get cookie
     // const token = context.req.cookies.token;
-    const token = getCookie('token', context)
+    const token = getCookie('token', context) || ''
     const user = await api.authorizeToken(token as string)
 
     // get products
