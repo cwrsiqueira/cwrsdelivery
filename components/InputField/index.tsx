@@ -17,7 +17,7 @@ export const InputField = ({ color, placeholder, value, onChange, password }: Pr
 
     return (
         <div
-            className={styles.container}
+            className={styles.inputContainer}
             style={{
                 borderColor: focused ? color : '#f9f9fb',
                 backgroundColor: focused ? "#fff" : '#f9f9fb'
@@ -31,6 +31,7 @@ export const InputField = ({ color, placeholder, value, onChange, password }: Pr
                 onChange={e => onChange(e.target.value)}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
+                maxLength={9}
             />
             {password &&
                 <div

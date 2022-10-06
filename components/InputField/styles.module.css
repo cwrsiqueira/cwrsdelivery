@@ -1,15 +1,13 @@
-.container {
+.inputContainer {
     width: 100%;
     height: 61px;
     background-color: #f9f9fb;
     border: 2px solid #f9f9fb;
     border-radius: 4px;
-    padding: 0 16px;
     display: flex;
 }
 
 .input {
-    flex: 1;
     border: 0;
     outline: 0;
     background: transparent;

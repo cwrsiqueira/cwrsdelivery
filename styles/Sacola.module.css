@@ -1,6 +1,6 @@
 .container {
     background-color: #fff;
-    padding: 50px 25px;
+    padding: 30px 10px 10px 20px;
 }
 
 .areaQuantity {
@@ -52,14 +52,6 @@
 .shippingForm {
     display: flex;
     gap: 14px;
-}
-
-.shippingFormInputArea {
-    flex: 2;
-}
-
-.shippingFormBtnArea {
-    flex: 1;
 }
 
 .shippingInfo {
