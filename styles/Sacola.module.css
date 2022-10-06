@@ -54,6 +54,14 @@
     gap: 14px;
 }
 
+.shippingFormInputArea {
+    flex: 2;
+}
+
+.shippingFormBtnArea {
+    flex: 1;
+}
+
 .shippingInfo {
     background-color: #f9f9fa;
     border-radius: 8px;

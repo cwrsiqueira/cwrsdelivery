@@ -37,15 +37,15 @@ const QtControl = ({ color, count, onUpdateCount, min, max, small }: Props) => {
                 style={{
                     color: canDecrease ? "#fff" : "#96A3AB",
                     backgroundColor: canDecrease ? color : "#F2F4F5",
-                    width: small ? '38px' : '48px',
-                    height: small ? '38px' : '48px'
+                    width: small ? '36px' : '48px',
+                    height: small ? '36px' : '48px'
                 }}
             >-</div>
             <div
                 className={styles.qt}
                 style={{
-                    width: small ? '38px' : '48px',
-                    height: small ? '38px' : '48px',
+                    width: small ? '36px' : '48px',
+                    height: small ? '36px' : '48px',
                     fontSize: small ? '14px' : '18px'
 
                 }}
@@ -56,8 +56,8 @@ const QtControl = ({ color, count, onUpdateCount, min, max, small }: Props) => {
                 style={{
                     color: canIncrease ? "#fff" : "#96A3AB",
                     backgroundColor: canIncrease ? color : "#F2F4F5",
-                    width: small ? '38px' : '48px',
-                    height: small ? '38px' : '48px'
+                    width: small ? '36px' : '48px',
+                    height: small ? '36px' : '48px'
                 }}
             >+</div>
         </div>

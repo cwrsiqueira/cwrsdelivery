@@ -6,7 +6,7 @@ const TEMP_PRODUCT: Product = {
     id: 1,
     image: '/temp/golden_burger.png',
     category: 'Tradicional',
-    name: 'Texas Burguer',
+    name: 'CWRS Spicy Bacon Burger COMBO',
     price: 26.50,
     description: '2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa, Pão brioche artesanal'
 }

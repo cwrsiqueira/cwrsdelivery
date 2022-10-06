@@ -6,7 +6,7 @@ import { Tenant } from "../../types/Tenant"
 import { useApi } from "../../libs/useApi"
 import { useAppContext } from "../../contexts/app"
 import { useEffect, useState } from "react"
-import { getCookie } from "cookies-next"
+import { getCookie, setCookie } from "cookies-next"
 import { User } from "../../types/User"
 import { useAuthContext } from "../../contexts/auth"
 import { Header } from "../../components/Header"
@@ -16,6 +16,8 @@ import { CartItem } from "../../types/CartItem"
 import { useRouter } from "next/router"
 import QtControl from "../../components/QtControl"
 import Image from "next/image"
+import CartProductItem from "../../components/cartProductItem"
+import { CartCookie } from "../../types/CartCookie"
 
 const Home = (data: Props) => {
     const { setToken, setUser } = useAuthContext()
@@ -33,8 +35,26 @@ const Home = (data: Props) => {
 
     // Product Control
     const [cart, setCart] = useState<CartItem[]>(data.cart)
-    const handleChangeCount = () => {
+    const handleChangeCount = (newCount: number, id: number) => {
+        const tmpCart: CartItem[] = [...cart];
+        const cartIndex = tmpCart.findIndex(item => item.product.id === id);
+        if (newCount > 0) {
+            tmpCart[cartIndex].qt = newCount;
+        } else {
+            delete tmpCart[cartIndex];
+        }
+        let newCart: CartItem[] = tmpCart.filter(item => item);
+        setCart(newCart);
 
+        // Update Cookie
+        let cartCookie: CartCookie[] = [];
+        for (let i in newCart) {
+            cartCookie.push({
+                id: newCart[i].product.id,
+                qt: newCart[i].qt
+            });
+        }
+        setCookie('cart', JSON.stringify(cartCookie));
     }
 
     // Shipping
@@ -72,24 +92,7 @@ const Home = (data: Props) => {
                 <div className={styles.areaQuantity}>{cart.length} {cart.length == 1 ? 'item' : 'itens'}</div>
                 <div className={styles.productsList}>
                     {cart.map((item, index) => (
-                        <div key={index} className={styles.areaItem}>
-                            <div className={styles.areaItemImg}>
-                                <Image src={item.product.image} alt="productImage" width={50} height={50} />
-                            </div>
-                            <div className={styles.areaItemInfo}>
-                                <div className={styles.areaItemInfoCategory}>{item.product.category}</div>
-                                <div className={styles.areaItemInfoTitle}>{item.product.name}</div>
-                                <div className={styles.areaItemInfoPrice} style={{ color: data.tenant.mainColor }}>{formatter.formatPrice(item.product.price)}</div>
-                            </div>
-                            <QtControl
-                                color={data.tenant.mainColor}
-                                count={item.qt}
-                                onUpdateCount={handleChangeCount}
-                                min={1}
-                                max={10}
-                                small
-                            />
-                        </div>
+                        <CartProductItem key={index} color={data.tenant.mainColor} quantity={item.qt} product={item.product} onChange={handleChangeCount} />
                     ))}
                 </div>
                 <div className={styles.shippingArea}>

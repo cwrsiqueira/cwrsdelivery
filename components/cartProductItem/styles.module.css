@@ -1,0 +1,30 @@
+.areaItem {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-bottom: 23px;
+    border-bottom: 1.5px solid rgba(27, 27, 27, 0.1);
+}
+
+.areaItemImg {
+    min-width: 40px;
+    margin-right: 12px;
+}
+
+.areaItemInfoCategory {
+    font-weight: 400;
+    font-size: 10px;
+    color: rgba(27, 27, 27, 0.5);
+}
+
+.areaItemInfoTitle {
+    font-weight: 500;
+    font-size: 14px;
+    color: #1b1b1b;
+}
+
+.areaItemInfoPrice {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+}
