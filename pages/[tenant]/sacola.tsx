@@ -19,7 +19,7 @@ import Image from "next/image"
 import CartProductItem from "../../components/cartProductItem"
 import { CartCookie } from "../../types/CartCookie"
 
-const Home = (data: Props) => {
+const Sacola = (data: Props) => {
     const { setToken, setUser } = useAuthContext()
     const { tenant, setTenant } = useAppContext()
 
@@ -133,7 +133,7 @@ const Home = (data: Props) => {
         </div >
     )
 }
-export default Home;
+export default Sacola;
 
 type Props = {
     tenant: Tenant;
