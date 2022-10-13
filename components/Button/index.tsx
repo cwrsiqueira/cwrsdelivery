@@ -11,7 +11,7 @@ type Props = {
 const Button = ({ color, label, onClick, fill, disabled }: Props) => {
     return (
         <div
-            className={styles.container}
+            className={`${styles.container} ${disabled ? styles.notAllowed : ''}`}
             style={{
                 color: fill ? '#fff' : color,
                 backgroundColor: fill ? color : 'transparent',

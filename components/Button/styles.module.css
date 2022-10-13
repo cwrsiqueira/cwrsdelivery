@@ -9,3 +9,7 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
+.notAllowed {
+    cursor: not-allowed;
+}
