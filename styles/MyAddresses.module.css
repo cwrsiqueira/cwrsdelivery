@@ -1,0 +1,17 @@
+.container {
+    background-color: #fff;
+    padding: 30px 10px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.list {
+    flex: 1;
+    border-top: 1.5px solid rgba(27, 27, 27, 0.1);
+    width: 100%;
+}
+
+.btnArea {
+    width: 100%;
+}

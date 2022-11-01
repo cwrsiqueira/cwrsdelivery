@@ -14,10 +14,7 @@ import { InputField } from "../../components/InputField"
 import { useFormatter } from "../../libs/useFormatter"
 import { CartItem } from "../../types/CartItem"
 import { useRouter } from "next/router"
-import QtControl from "../../components/QtControl"
-import Image from "next/image"
 import CartProductItem from "../../components/cartProductItem"
-import { CartCookie } from "../../types/CartCookie"
 import ButtonWithIcon from "../../components/ButtonWithIcon"
 import { Address } from "../../types/Address"
 
@@ -49,17 +46,17 @@ const Checkout = (data: Props) => {
     const [shippingPrice, setShippingPrice] = useState(0);
     const [shippingAddress, setShippingAddress] = useState<Address>();
     const handleChangeAddress = () => {
-        // router.push(`${data.tenant.slug}/myaddresses`);
-        setShippingAddress({
-            id: 1,
-            cep: '68911055',
-            street: 'Rua Rio Bonito',
-            number: '1236',
-            neighborhood: 'Fazendinha',
-            city: 'Macapá',
-            state: 'Amapá'
-        });
-        setShippingPrice(9.50);
+        router.push(`/${data.tenant.slug}/myaddresses`);
+        // setShippingAddress({
+        //     id: 1,
+        //     cep: '68911055',
+        //     street: 'Rua Rio Bonito',
+        //     number: '1236',
+        //     neighborhood: 'Fazendinha',
+        //     city: 'Macapá',
+        //     state: 'Amapá'
+        // });
+        // setShippingPrice(9.50);
     }
 
     // Payments

@@ -5,6 +5,9 @@ import Cupom from './cupom.svg'
 import EmailSent from './emailSent.svg'
 import Location from './location.svg'
 import Money from './money.svg'
+import Dots from './dots.svg'
+import Edit from './edit.svg'
+import Trash from './trash.svg'
 
 type Props = {
     color: string;
@@ -23,6 +26,9 @@ const Icon = ({ color, icon, width, height }: Props) => {
             {icon === 'emailSent' && <EmailSent color={color} />}
             {icon === 'location' && <Location color={color} />}
             {icon === 'money' && <Money color={color} />}
+            {icon === 'dots' && <Dots color={color} />}
+            {icon === 'edit' && <Edit color={color} />}
+            {icon === 'trash' && <Trash color={color} />}
         </div>
     )
 }

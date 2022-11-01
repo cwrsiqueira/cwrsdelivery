@@ -1,6 +1,7 @@
 import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 import { User } from "../types/User";
+import { Address } from "../types/Address";
 
 const TEMP_PRODUCT: Product = {
     id: 1,
@@ -75,5 +76,25 @@ export const useApi = (tenantSlug: string) => ({
         }
 
         return cart;
+    },
+    getUserAddresses: async (email: string) => {
+        const addresses: Address[] = [];
+
+        for (let i = 0; i < 4; i++) {
+            addresses.push(
+                {
+                    id: i + 1,
+                    cep: '68.911-05' + i,
+                    street: 'Av. Rio Bonito',
+                    number: '123' + i,
+                    neighborhood: 'Fazendinha',
+                    city: 'Macapá',
+                    state: 'AP',
+                    complement: 'Conj. Fazendinha Alfaville'
+                }
+            );
+        }
+
+        return addresses;
     }
 })
