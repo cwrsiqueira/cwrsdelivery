@@ -9,9 +9,10 @@ type Props = {
     value: string;
     onChange: (newValue: string) => void;
     password?: boolean
+    warning?: boolean
 }
 
-export const InputField = ({ color, placeholder, value, onChange, password }: Props) => {
+export const InputField = ({ color, placeholder, value, onChange, password, warning }: Props) => {
     const [showPassword, setShowPassword] = useState(false)
     const [focused, setFocused] = useState(false)
 
@@ -19,7 +20,7 @@ export const InputField = ({ color, placeholder, value, onChange, password }: Pr
         <div
             className={styles.inputContainer}
             style={{
-                borderColor: focused ? color : '#f9f9fb',
+                borderColor: warning ? '#ff0000' : (focused ? color : '#f9f9fb'),
                 backgroundColor: focused ? "#fff" : '#f9f9fb'
             }}
         >
@@ -31,9 +32,10 @@ export const InputField = ({ color, placeholder, value, onChange, password }: Pr
                 onChange={e => onChange(e.target.value)}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
-                maxLength={9}
+            // maxLength={9}
             />
-            {password &&
+            {
+                password &&
                 <div
                     className={styles.showPassword}
                     onClick={() => setShowPassword(!showPassword)}
@@ -42,6 +44,6 @@ export const InputField = ({ color, placeholder, value, onChange, password }: Pr
                     {!showPassword && <OpenEye />}
                 </div>
             }
-        </div>
+        </div >
     )
 }

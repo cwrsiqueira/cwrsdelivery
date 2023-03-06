@@ -24,7 +24,7 @@ type Props = {
 
 const MyAddresses = (data: Props) => {
     const { setToken, setUser } = useAuthContext()
-    const { tenant, setTenant } = useAppContext()
+    const { tenant, setTenant, setShippingAddress, setShippingPrice } = useAppContext()
 
     useEffect(() => {
         setTenant(data.tenant)
@@ -35,19 +35,36 @@ const MyAddresses = (data: Props) => {
 
     const formatter = useFormatter()
     const router = useRouter()
+    const api = useApi(data.tenant.slug);
 
-    const handleNewAddress = () => {
-        router.push(`/${data.tenant.slug}/address`);
-    }
-
-    const handleAddressSelect = (address: Address) => {
-        console.log(`Selecionou o endereço: ${address.street}, ${address.number}`);
+    const handleAddressSelect = async (address: Address) => {
+        const price = await api.getShippingPrice(address);
+        if (price) {
+            // Salvar no context
+            setShippingAddress(address);
+            setShippingPrice(price);
+            // Endereço e frete
+            router.push(`/${data.tenant.slug}/checkout`);
+        }
     }
     const handleAddressEdit = (id: number) => {
+        router.push(`/${data.tenant.slug}/address/${id}`);
         console.log(`Editar o endereço id: ${id}`);
     }
-    const handleAddressDelete = (id: number) => {
-        console.log(`Deletar o endereço id: ${id}`);
+    const handleAddressDelete = async (id: number) => {
+        if (confirm('Confirma exclusão do endereço?')) {
+            let getAddress = await api.getUserAddress(id);
+            if (getAddress) {
+                await api.delUserAddress(id);
+                alert('Endereço deletado com sucesso!');
+                router.reload();
+            } else {
+                alert('O endereço não existe ou já foi deletado');
+            }
+        }
+    }
+    const handleNewAddress = () => {
+        router.push(`/${data.tenant.slug}/address/new`);
     }
 
     // Menu actions
@@ -73,7 +90,9 @@ const MyAddresses = (data: Props) => {
             </Head>
 
             <div className={styles.container}>
-                <Header hrefBack={`/${tenant?.slug}/checkout`} color={`${tenant?.mainColor}`} title="Meus Endereços" />
+                <div className={styles.header}>
+                    <Header hrefBack={`/${tenant?.slug}/checkout`} color={`${tenant?.mainColor}`} title="Meus Endereços" />
+                </div>
 
                 <div className={styles.list}>
                     {data.addresses.map((item, index) => (

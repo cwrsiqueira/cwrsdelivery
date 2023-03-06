@@ -1,0 +1,224 @@
+.container {
+    background-color: #fff;
+    padding: 30px 10px 10px 20px;
+}
+
+.statusArea {
+    margin-top: 21px;
+    padding: 27px 23px;
+    border-radius: 4px;
+}
+
+.statusLongLabel {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.statusPct {
+    margin-top: 16px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.statusPctBar {
+    height: inherit;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.statusMsg {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.orderInfoArea {
+    display: flex;
+    align-items: center;
+    border-bottom: 1.5px solid rgba(27, 27, 27, 0.1);
+    padding: 15px 0;
+}
+
+.orderInfoStatus {
+    font-weight: 600;
+    font-size: 11px;
+    padding: 6px 17px;
+    background-color: #ff0000;
+    border-radius: 4px;
+}
+
+.orderInfoQt {
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0 19px;
+}
+
+.orderInfoDate {
+    text-align: right;
+    font-weight: 400;
+    font-size: 16px;
+    color: #b3b3b3;
+    flex: 1;
+}
+
+.infoGroup {
+    border-top: 1.5px solid rgba(27, 27, 27, 0.1);
+    margin-bottom: 40px;
+}
+
+.infoArea {
+    padding-top: 24px;
+}
+
+.infoArea .infoTitle {
+    font-weight: 400;
+    font-size: 16px;
+    color: #1b1b1b;
+    margin-bottom: 8px;
+}
+
+.infoBody {
+    clear: both;
+}
+
+.paymentTypes {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.paymentTypes .paymentBtn {
+    flex: 1;
+    width: 141px;
+}
+
+.cupomInput {
+    display: flex;
+    gap: 14px;
+}
+
+.areaQuantity {
+    border-top: 1.5px solid rgba(27, 27, 27, 0.1);
+    border-bottom: 1.5px solid rgba(27, 27, 27, 0.1);
+    color: #1b1b1b;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 18px 0;
+}
+
+.areaItem {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-bottom: 23px;
+    border-bottom: 1.5px solid rgba(27, 27, 27, 0.1);
+}
+
+.areaItemInfoCategory {
+    font-weight: 400;
+    font-size: 10px;
+    color: rgba(27, 27, 27, 0.5);
+}
+
+.areaItemInfoTitle {
+    font-weight: 500;
+    font-size: 14px;
+    color: #1b1b1b;
+}
+
+.areaItemInfoPrice {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+}
+
+.shippingArea {
+    margin-top: 31px;
+}
+
+.shippingTitle {
+    font-weight: 400;
+    font-size: 16px;
+    color: #6a7d8b;
+    margin-bottom: 16px;
+}
+
+.shippingForm {
+    display: flex;
+    gap: 14px;
+}
+
+.shippingInfo {
+    background-color: #f9f9fa;
+    border-radius: 8px;
+    margin-top: 16px;
+    padding: 24px 32px;
+}
+
+.shippingAddress {
+    font-weight: 400;
+    font-size: 10px;
+    color: #6a7d8b;
+}
+
+.shippingTime {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.shippingTimeText {
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+}
+
+.shippingPrice {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000;
+}
+
+.resumeArea {
+    background-color: #f9f9fb;
+    border-radius: 8px;
+    margin-top: 16px;
+    padding: 48px 32px;
+}
+
+.resumeItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.resumeLeft {
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+    flex: 1;
+}
+
+.resumeRight {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+}
+
+.resumeLine {
+    border-top: 1px dashed #96a3ab;
+    margin-bottom: 29px;
+}
+
+.resumeRightBig {
+    font-weight: 600;
+    font-size: 24px;
+    color: #000;
+}
+
+.resumeButton {
+    margin-top: 40px;
+}

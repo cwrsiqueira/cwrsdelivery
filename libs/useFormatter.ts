@@ -11,5 +11,9 @@ export const useFormatter = () => ({
         if (numberLength >= digits) return number
         const remain = digits - numberLength
         return `${'0'.repeat(remain)}${number}`
+    },
+    formatDate: (date: string) => {
+        let currentDate = new Date(`${date} 00:00:00`);
+        return new Intl.DateTimeFormat('pt-BR').format(currentDate);
     }
 })

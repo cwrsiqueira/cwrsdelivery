@@ -2,6 +2,7 @@ import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 import { User } from "../types/User";
 import { Address } from "../types/Address";
+import { Order } from "../types/Order";
 
 const TEMP_PRODUCT: Product = {
     id: 1,
@@ -10,6 +11,37 @@ const TEMP_PRODUCT: Product = {
     name: 'CWRS Spicy Bacon Burger COMBO',
     price: 26.50,
     description: '2 Blends de carne de 150g, Queijo Cheddar,Bacon Caramelizado, Salada, Molho da casa, Pão brioche artesanal'
+}
+
+const TEMP_ORDER: Order = {
+    id: 1,
+    // status: 'confirmation',
+    // status: 'preparing',
+    // status: 'sent',
+    status: 'delivered',
+    orderDate: '2023-03-01',
+    userid: 1,
+    shippingAddress: {
+        id: 2,
+        street: 'Rua das Flores',
+        number: `200`,
+        cep: '58433001',
+        city: 'São Paulo',
+        neighborhood: 'Jardins',
+        state: 'SP'
+    },
+    shippingPrice: 9.16,
+    paymentType: 'money',
+    paymentChange: 100.00,
+    cupom: 'TESTE',
+    cupomDiscount: 15.20,
+    products: [
+        { product: { ...TEMP_PRODUCT, id: 1 }, qt: 1 },
+        { product: { ...TEMP_PRODUCT, id: 2 }, qt: 2 },
+        { product: { ...TEMP_PRODUCT, id: 3 }, qt: 1 }
+    ],
+    subtotal: 106.00,
+    total: 99.96,
 }
 
 export const useApi = (tenantSlug: string) => ({
@@ -96,5 +128,45 @@ export const useApi = (tenantSlug: string) => ({
         }
 
         return addresses;
+    },
+    addUserAddress: async (address: Address) => {
+        return { ...address, id: 9 };
+    },
+    editUserAddress: async (address: Address) => {
+        return true;
+    },
+    delUserAddress: async (id: number) => {
+        return true;
+    },
+    getUserAddress: async (id: number) => {
+        let address: Address = {
+            id,
+            cep: '68.911-05' + id,
+            street: 'Av. Rio Bonito',
+            number: '123' + id,
+            neighborhood: 'Fazendinha',
+            city: 'Macapá',
+            state: 'AP',
+            complement: 'Conj. Fazendinha Alfaville'
+
+        }
+        return address;
+    },
+
+    getShippingPrice: async (address: Address) => {
+        return 9.16;
+    },
+
+    setOrder: async (
+        address: Address,
+        paymentType: 'money' | 'card',
+        paymentChange: number,
+        cupom: string,
+        cart: CartItem[]
+    ) => {
+        return TEMP_ORDER;
+    },
+    getOrder: async (id: number) => {
+        return TEMP_ORDER;
     }
 })

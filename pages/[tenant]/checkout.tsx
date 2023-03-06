@@ -16,7 +16,6 @@ import { CartItem } from "../../types/CartItem"
 import { useRouter } from "next/router"
 import CartProductItem from "../../components/cartProductItem"
 import ButtonWithIcon from "../../components/ButtonWithIcon"
-import { Address } from "../../types/Address"
 
 type Props = {
     tenant: Tenant;
@@ -27,7 +26,7 @@ type Props = {
 
 const Checkout = (data: Props) => {
     const { setToken, setUser } = useAuthContext()
-    const { tenant, setTenant } = useAppContext()
+    const { tenant, setTenant, shippingAddress, shippingPrice } = useAppContext()
 
     useEffect(() => {
         setTenant(data.tenant)
@@ -38,25 +37,14 @@ const Checkout = (data: Props) => {
 
     const formatter = useFormatter()
     const router = useRouter()
+    const api = useApi(data.tenant.slug)
 
     // Product Control
     const [cart, setCart] = useState<CartItem[]>(data.cart)
 
     // Shipping
-    const [shippingPrice, setShippingPrice] = useState(0);
-    const [shippingAddress, setShippingAddress] = useState<Address>();
     const handleChangeAddress = () => {
         router.push(`/${data.tenant.slug}/myaddresses`);
-        // setShippingAddress({
-        //     id: 1,
-        //     cep: '68911055',
-        //     street: 'Rua Rio Bonito',
-        //     number: '1236',
-        //     neighborhood: 'Fazendinha',
-        //     city: 'Macapá',
-        //     state: 'Amapá'
-        // });
-        // setShippingPrice(9.50);
     }
 
     // Payments
@@ -83,8 +71,21 @@ const Checkout = (data: Props) => {
         }
         setSubtotal(sub)
     }, [cart])
-    const handleFinish = () => {
-        alert('Finalizou pedido')
+    const handleFinish = async () => {
+        if (shippingAddress) {
+            const order = await api.setOrder(
+                shippingAddress,
+                paymentType,
+                paymentChange,
+                cupom,
+                data.cart,
+            );
+            if (order) {
+                router.push(`/${data.tenant.slug}/order/${order.id}`);
+            } else {
+                alert('Ocorreu um erro! Tente mais tarde.');
+            }
+        }
     }
 
     return (
